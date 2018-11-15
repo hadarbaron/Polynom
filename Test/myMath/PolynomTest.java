@@ -17,7 +17,7 @@ class PolynomTest {
 	static Polynom_able p6=null;
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		p1=new Polynom ("3x+6-x^2+8x^5");
+		p1=new Polynom ("3x+6-x^2+8x^5");//a Types of polynomials using different constructors
 		p2=new Polynom();
 		p2.add (new Monom (-2,5));
 		p2.add(new Monom (-3,8));
@@ -28,40 +28,32 @@ class PolynomTest {
 		p5=new Polynom();
 		p6=new Polynom ("5x-6");
 	}
-
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 	}
-
 	@BeforeEach
 	void setUp() throws Exception {
 	}
-
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-
 	@Test
 	void testF() {
-		assertEquals(1950,p1.f(3) );//בודק על פונקציה שעשויהי מסטרינג
-		assertEquals(-20167,p2.f(3) );//בודק על פונקציה שעשוייה מהוספת מונומים
-		assertEquals(-20167,p3.f(3) );//בודק על פונקציה שמעתיקה פולינום אחר
+		assertEquals(1950,p1.f(3) );//Checks for a function that may be stringed
+		assertEquals(-20167,p2.f(3) );//Checks for a function that might add monomers
+		assertEquals(-20167,p3.f(3) );//Checks the function that another polynomial is copying
 		assertEquals(0,p4.f(3) );
 	}
-
 	@Test
 	void testAddPolynom_able() {
 		Polynom_able tester=new Polynom ();
 		tester.add(p6);
 		assertEquals(p6.toString(),tester.toString());
-
-
 	}
-
 	@Test
 	void testToString() {
 		assertEquals("-3.0x^8-2.0x^5+1.0x^2-7.0",p2.toString() );
-		assertEquals(p5.toString(),p4.toString() );//בוודקת האם כשבונים פולינום ריק הוא מדפיס בטעות משהו
+		assertEquals(p5.toString(),p4.toString() );//When he checks the mother as an empty polynomial constructor, he accidentally prints something
 
 	}
 
@@ -71,10 +63,10 @@ class PolynomTest {
 		tester.add(new Monom (5,1));
 		tester.add(new Monom (-6,0));
 		assertEquals(p6.toString(),tester.toString());
-		boolean flag=true;//בדיקה אם הוספנ מונום שלא אפשרי להוספה 
+		boolean flag=true;//Check if a monom is added that is not possible to add
 		try
 		{
-			tester.add(new Monom (4,-8));
+			tester.add(new Monom (4,-8));//the power of the monom its negative
 		}
 		catch (Exception e)
 		{
@@ -122,28 +114,33 @@ class PolynomTest {
 		assertEquals("0.0",zero.toString());
 		assertEquals(p4.toString(),p5.toString());//אם הפולינום ריק
 	}
-
 	@Test
 	void testRoot() { 
-
+		Polynom_able pol=new Polynom ("x^2+5");//A positive function without cutting with the X axis
+		boolean flag=true;
+		try{
+			pol.root(2, 8, 0.01);	
+		}
+		catch (Exception e){
+			flag=false;
+		}
+		if (flag)
+		{
+			fail("Not yet implemented");	
+		}
 		assertEquals(99.99923706054688,p1.root(-100, 100, 0.001));
-
-
 	}
-
 	@Test
 	void testCopy() {
-		assertEquals(p2.toString(),p3.toString());//לבדוק אם העתיק 
-		assertNotSame(p2,p3);//לבדוק שלא העתיק העתקה של רפרנס
+		assertEquals(p2.toString(),p3.toString());//Check if copied
+		assertNotSame(p2,p3);//To check that he did not copy a copy of the reference
 
 	}
-
 	@Test
 	void testDerivative() {
 		Polynom_able a=p1.derivative();
 		assertEquals("40.0x^4-2.0x+3.0",a.toString());
 	}
-
 	@Test
 	void testArea() {
 		assertEquals(20734.424916499993,p1.area(0, 5, 0.01));
@@ -151,14 +148,13 @@ class PolynomTest {
 	@Test
 	void testPolynom() {
 
-		fail("Not yet implemented");
+		assertEquals("",p5.toString());
 	}
-
 	@Test
 	void testPolynomString() {
 		boolean flag=true;
 		try {
-			Polynom_able tester=new Polynom ("-3x+x^4-x^-2");//the power is negetive
+			Polynom_able tester=new Polynom ("-3x+x^4-x^-2");//the power is negetive so its not sopuse to work
 		}
 		catch(Exception e )
 		{
