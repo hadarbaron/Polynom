@@ -292,14 +292,12 @@ public class Polynom implements Polynom_able{
 		}
 	}
 	/**
-	 * @param lineStyle object defining width and color attributes for line drawing,
-     *       begin of the form { width: 2, color: "#00FF00" }
-        this.segments = segments || 10;
-
-        /**
-         * draw style for drawing the line.
-         * @type {*|{width: string, color: string}}
-*/
+	 * the function get x0 and x1 and calculate the area under the X axis
+	 * @param x0
+	 * @param x1
+	 * @param eps
+	 * @return
+	 */
 	public double area2(double x0, double x1, double eps) {
 		// TODO Auto-generated method stub
 		double length=(x1-x0)/eps;//The amount of squares
